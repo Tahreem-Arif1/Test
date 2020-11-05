@@ -3,6 +3,9 @@ def calculate(a, b, operator):
        arithmetic operation on the given
        operands"""
 
+    if type(a) not in [int, float]:
+        raise TypeError('The operand type must be either integer or float.')
+
     result = 'Unexpected Operator'
 
     if operator == '+':
