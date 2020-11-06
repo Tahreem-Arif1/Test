@@ -11,15 +11,19 @@ def calc():
 
     if request.method == 'POST':
         data = request.get_json()
-        a = data['op1']
-        b = data['op2']
-        operator = data['op']
+        try:
+            a = data['op1']
+            b = data['op2']
+            operator = data['op']
 
-        if operator not in ('+', '-', '/', '*'):
-            return 'Unexpected Operator!!'
-        else:
-            result = calculate(a, b, operator)
-            return jsonify({'result': result})
+            if operator not in ('+', '-', '/', '*'):
+                return 'Unexpected Operator!!'
+            else:
+                result = calculate(a, b, operator)
+                return jsonify({'result': result})
+
+        except KeyError:
+            return 'Please provide the required arguments.', 400
 
 
 if __name__ == '__main__':
